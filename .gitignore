@@ -1,0 +1,31 @@
+# Arquivos e pastas do Dart
+.dart_tool/
+.packages
+build/
+pubspec.lock
+
+# Arquivos de log e cache
+*.log
+.cache/
+.tmp/
+
+# Diretórios do sistema e IDEs
+.idea/
+.vscode/
+*.iml
+
+# Saídas de compilação
+out/
+bin/cache/
+gen/
+
+# Arquivos do Flutter (se usar futuramente)
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-versions
+.metadata
+.melos_tool/
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
