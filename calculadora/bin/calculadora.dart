@@ -22,16 +22,21 @@ void main() {
     print(numero1 / numero2);
   }
 
-  if (operacao == '+') {
-    soma();
-  } else if (operacao == '-') {
-    subtracao();
-  } else if (operacao == '*') {
-    multiplicacao();
-  } else if (operacao == '/') {
-    divisao();
-  } else {
-    print('Operação inválida');
+  switch (operacao) {
+    case '+':
+      soma();
+      break;
+    case '-':
+      subtracao();
+      break;
+    case '*':
+      multiplicacao();
+      break;
+    case '/':
+      divisao();
+      break;
+    default:
+      print('Operação inválida');
   }
 
 }
