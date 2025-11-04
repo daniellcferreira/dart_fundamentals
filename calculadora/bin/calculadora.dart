@@ -3,8 +3,9 @@ import 'dart:io';
 void main() {
   double numero1 = 0;
   double numero2 = 0;
-
   String operacao = "";
+  String? entrada = "";
+  List<String> operacoes = <String>["+", "-", "*", "/"];
 
   void soma() {
     print(numero1 + numero2);
@@ -42,18 +43,27 @@ void main() {
   }
 
   print('Digite o primeiro número:');
-  String? entrada = stdin.readLineSync();
+  entrada = stdin.readLineSync();
   if (entrada != null) {
     if (entrada != "") {
       numero1 = double.parse(entrada);
     }
   }
 
-  print('Digite a operação (+, -, *, /):');
-  entrada = stdin.readLineSync();
-  if (entrada != null) {
-    operacao = entrada;
+  void getOperacao() {
+    print('Digite a operação: ${operacoes.toString()}:');
+    String? entrada = stdin.readLineSync();
+    if (entrada != null) {
+      if (operacoes.contains(entrada)) {
+        operacao = entrada;
+      } else {
+        print('Operação inválida. Tente novamente.');
+        getOperacao();
+      }
+    }
   }
+
+  getOperacao();
 
   print('Digite o segundo número:');
   entrada = stdin.readLineSync();
