@@ -1,10 +1,10 @@
 import 'dart:io';
 
 void main() {
-  double numero1 = double.parse(stdin.readLineSync()!);
-  double numero2 = double.parse(stdin.readLineSync()!);
+  double numero1 = 0;
+  double numero2 = 0;
 
-  String operacao = stdin.readLineSync()!;
+  String operacao = "";
 
   void soma() {
     print(numero1 + numero2);
@@ -20,6 +20,25 @@ void main() {
 
   void divisao() {
     print(numero1 / numero2);
+  }
+
+  String? entrada = stdin.readLineSync();
+  if (entrada != null) {
+    if (entrada != "") {
+      numero1 = double.parse(entrada);
+    }
+  }
+
+  entrada = stdin.readLineSync();
+  if (entrada != null) {
+    if (entrada != "") {
+      numero2 = double.parse(entrada);
+    }
+  }
+  
+  entrada = stdin.readLineSync();
+  if (entrada != null) {
+    operacao = entrada;
   }
 
   switch (operacao) {
