@@ -2,7 +2,9 @@ import 'dart:io';
 
 // Função principal que inicia o programa
 void main() {
+  List<String> notas = <String>[];
   getComando(); // Chama a função responsável por ler e validar o comando
+  adicionarNota(notas);
 }
 
 // Função responsável por obter o comando digitado pelo usuário
@@ -25,4 +27,19 @@ String getComando() {
   }
   
   return entrada; // Retorna o comando válido
+}
+
+List<String> adicionarNota(List<String> notas) {
+  print("Escreva uma nota");
+  String? nota = "";
+
+  nota = stdin.readLineSync();
+
+  if (nota == null || nota.isEmpty) {
+    print("Não é possivel adicionar uma nota vazia.");
+    adicionarNota(notas);
+  }
+  notas.add(nota!);
+
+  return notas;
 }
