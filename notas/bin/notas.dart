@@ -65,8 +65,10 @@ void listarNotas(List<String> notas) {
 
 // Função que controla o fluxo do programa exibindo o menu e executando as ações
 void menu(List<String> notas) {
+  print("");
   // Solicita ao usuário que escolha uma opção
   String comando = getComando();
+  print("");
 
   // Decide qual função executar com base no comando recebido
   switch (comando) {
