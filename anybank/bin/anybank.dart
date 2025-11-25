@@ -11,8 +11,22 @@ void main() {
     print('Titular: ${conta.titular}, Saldo: \$${conta.saldo}');
   }
 
-  conta.saldo += 500.00;
+  conta.saldo = 500.00;
   print('Após depósito, o saldo de ${conta.titular} é \$${conta.saldo}');
+
+  receber(conta2, 300.00);
+  print('Após receber, o saldo de ${conta2.titular} é \$${conta2.saldo}');
+
+  enviar(conta, 200.00);
+  print('Após enviar, o saldo de ${conta.titular} é \$${conta.saldo}');
+}
+
+void receber(Conta conta, double valor) {
+  conta.saldo += valor;
+}
+
+void enviar(Conta conta, double valor) {
+  conta.saldo -= valor;
 }
 
 class Conta {
