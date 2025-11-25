@@ -14,19 +14,11 @@ void main() {
   conta.saldo = 500.00;
   print('Após depósito, o saldo de ${conta.titular} é \$${conta.saldo}');
 
-  receber(conta2, 300.00);
+  conta2.receber(300.00);
   print('Após receber, o saldo de ${conta2.titular} é \$${conta2.saldo}');
 
-  enviar(conta, 200.00);
+  conta.enviar(200.00);
   print('Após enviar, o saldo de ${conta.titular} é \$${conta.saldo}');
-}
-
-void receber(Conta conta, double valor) {
-  conta.saldo += valor;
-}
-
-void enviar(Conta conta, double valor) {
-  conta.saldo -= valor;
 }
 
 class Conta {
@@ -34,4 +26,12 @@ class Conta {
   double saldo;
 
   Conta(this.titular, this.saldo);
+
+  void receber(double valor) {
+    saldo += valor;
+  }
+
+  void enviar(double valor) {
+    saldo -= valor;
+  }
 }
