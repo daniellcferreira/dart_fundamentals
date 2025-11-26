@@ -27,4 +27,5 @@ void main() {
   contaAna.imprimirSaldo();
   contaAna.enviar(1000);
   contaAna.receber(2000);
+  contaAna.calcularRendimento();
 }
