@@ -19,4 +19,6 @@ requestData() {
     );
     print(mapCarla['balance']);
   });
+
+  print("Ultima coisa a ser executada");
 }
