@@ -1,4 +1,5 @@
 import 'package:http/http.dart';
+import 'dart:convert';
 
 void main() {
   // print('Hello, Dart!');
@@ -12,5 +13,10 @@ requestData() {
   print(futureResponse);
   futureResponse.then((Response response) {
     print(response.body);
+    List<dynamic> listAccounts = json.decode(response.body);
+    Map<String, dynamic> mapCarla = listAccounts.firstWhere(
+      (element) => element['name'] == 'Carla',
+    );
+    print(mapCarla['balance']);
   });
 }
