@@ -1,40 +1,44 @@
+import 'dart:async';
+
+import 'package:dart_assincronismo/api_key.dart';
 import 'package:http/http.dart';
-import 'package:dart_assincronismo/api_keys.dart';
 import 'dart:convert';
 
+StreamController<String> streamController = StreamController<String>();
+
 void main() {
-  // print('Hello, Dart!');
-  // requestData();
-  //requestDataAsync();
+  StreamSubscription streamSubscription = streamController.stream.listen((
+    String info,
+  ) {
+    print(info);
+  });
+
+  requestData();
+  requestDataAsync();
   sendDataAsync({
-    "id": 4,
+    "id": "NEW001",
     "name": "Flutter",
-    "last_name": "Dart",
-    "balance": 2500.0
+    "lastName": "Dart",
+    "balance": 5000,
   });
 }
 
 requestData() {
   String url =
-      "https://gist.githubusercontent.com/daniellcferreira/ddcbf1eeadd0b69bead25a1b158f2091/raw/fc8a14b9cb47622fa71c7801757940662943d02d/accounts.json";
+      "https://gist.githubusercontent.com/ricarthlima/a0eb198cb7a70696c4031e7e577de0cd/raw/356ce2c39dfd58d3d2e948d1ad87ea828544f1db/accounts.json";
   Future<Response> futureResponse = get(Uri.parse(url));
-  print(futureResponse);
   futureResponse.then((Response response) {
-    print(response.body);
-    List<dynamic> listAccounts = json.decode(response.body);
-    Map<String, dynamic> mapCarla = listAccounts.firstWhere(
-      (element) => element['name'] == 'Carla',
+    streamController.add(
+      "${DateTime.now()} | Requisição de leitura (usando then).",
     );
-    print(mapCarla['balance']);
   });
-
-  print("Ultima coisa a ser executada");
 }
 
 Future<List<dynamic>> requestDataAsync() async {
   String url =
-      "https://gist.githubusercontent.com/daniellcferreira/ddcbf1eeadd0b69bead25a1b158f2091/raw/fc8a14b9cb47622fa71c7801757940662943d02d/accounts.json";
+      "https://gist.githubusercontent.com/ricarthlima/a0eb198cb7a70696c4031e7e577de0cd/raw/356ce2c39dfd58d3d2e948d1ad87ea828544f1db/accounts.json";
   Response response = await get(Uri.parse(url));
+  streamController.add("${DateTime.now()} | Requisição de leitura.");
   return json.decode(response.body);
 }
 
@@ -43,21 +47,27 @@ sendDataAsync(Map<String, dynamic> mapAccount) async {
   listAccounts.add(mapAccount);
   String content = json.encode(listAccounts);
 
-  String url =
-      "https://gist.githubusercontent.com/daniellcferreira/ddcbf1eeadd0b69bead25a1b158f2091/raw/fc8a14b9cb47622fa71c7801757940662943d02d/accounts.json";
-  
-  Response response = await put(
+  String url = "https://api.github.com/gists/413c0aefe6c6abc464581c29029c8ace";
+
+  Response response = await post(
     Uri.parse(url),
     headers: {"Authorization": "Bearer $githubApiKey"},
     body: json.encode({
-      "description": "accounts.json",
+      "description": "account.json",
       "public": true,
       "files": {
-        "accounts.json": {
-          "content": content,
-        }
-      }
+        "accounts.json": {"content": content},
+      },
     }),
   );
-  print(response.body);
+
+  if (response.statusCode.toString()[0] == "2") {
+    streamController.add(
+      "${DateTime.now()} | Requisição adição bem sucedida (${mapAccount["name"]}).",
+    );
+  } else {
+    streamController.add(
+      "${DateTime.now()} | Requisição falhou (${mapAccount["name"]}).",
+    );
+  }
 }
