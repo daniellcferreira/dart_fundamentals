@@ -11,3 +11,4 @@ Projeto desenvolvido em Dart para gerenciar notas via terminal. O usuário pode 
 - Adicionar novas notas
 - Listar notas cadastradas
 - Validação de entradas do usuário
+  
