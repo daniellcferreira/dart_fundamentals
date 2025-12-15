@@ -9,17 +9,30 @@ class Account {
   // Indica se a conta está autenticada no sistema
   bool isAuthenticated;
 
+  // Data de criação da conta (opcional)
+  DateTime? createdAt;
+
   // Construtor da classe Account
-  // name e balance são obrigatórios, isAuthenticated é opcional (padrão = false)
+  // Todos os campos principais são obrigatórios
   Account({
     required this.name,
     required this.balance,
-    this.isAuthenticated = false,
+    required this.isAuthenticated,
   });
 
-  // Método para editar o saldo da conta.
-  // O parâmetro 'value' pode ser positivo (depósito) ou negativo (saque).
+  // Método responsável por alterar o saldo da conta
+  // O valor pode ser positivo (crédito) ou negativo (débito)
   void editBalance({required value}) {
     balance = balance + value;
+  }
+
+  // Sobrescreve o método toString para exibir
+  // informações formatadas da conta
+  @override
+  String toString() {
+    return "Account from $name\n"
+        "Balance: $balance\n"
+        "Authenticated: $isAuthenticated\n"
+        "Created at: $createdAt";
   }
 }
