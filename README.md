@@ -32,4 +32,3 @@ Todos os exemplos incluídos ao longo do projeto possuem código comentado e exp
 - **Para iniciantes:** Um ponto de partida para entender os conceitos primários de Dart.
 - **Refinamento de conhecimento:** Serve como material de consulta para quem deseja aprofundar no desenvolvimento Dart.
 - **Bases sólidas:** Introdução a uma das linguagens mais utilizadas em aplicações modernas.
-
